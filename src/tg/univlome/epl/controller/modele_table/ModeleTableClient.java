@@ -19,7 +19,7 @@ public class ModeleTableClient extends AbstractTableModel {
 		super();
 		
 		clients.add(new Client("TCHIGBE", "Ezéchiel"));
-		clients.add(new Client("ZEGBLA", "Caleb"));
+		clients.add(new Client("ZEGBLA", "Kossi Kaleb"));
 		clients.add(new Client("MILEGNE", "Dieu donné"));
 		clients.add(new Client("SOKEL", "Roland"));
 		clients.add(new Client("AWOMAKOU", "Vivien"));
@@ -31,7 +31,7 @@ public class ModeleTableClient extends AbstractTableModel {
 		clients.add(new Client("AYITEH", "Josué"));
 		clients.add(new Client("NOYOULIWA", "Victoire"));
 		clients.add(new Client("AMOUSSOU", "Holla Josué"));
-		clients.add(new Client("DWEGGAH","Ariel"));
+		clients.add(new Client("DWEGGAH", "Ariel"));
 		clients.add(new Client("SOSSOU", "Olivier"));
 		clients.add(new Client("AHAMA", "Jonathan"));
 		clients.add(new Client("EKLOU", "Kossi Dodji"));
@@ -55,6 +55,8 @@ public class ModeleTableClient extends AbstractTableModel {
 		clients.add(new Client("ETSE", "Kossivi Paul"));
 		clients.add(new Client("ALI", "Rahim"));
 		clients.add(new Client("KLIKO", "Geoffrey"));
+		clients.add(new Client("AMAÏZO", "Teddy"));
+		clients.add(new Client("HOETOWOU", "Yaovi"));
 	}
 	
 	@Override
