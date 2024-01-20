@@ -195,7 +195,6 @@ public class Accueil extends JFrame {
 		contentPane.add(panelCenter, BorderLayout.CENTER);
 		contentPane.add(panelBottom, BorderLayout.SOUTH);
 		
-		
 		this.setVisible(true);
 	}
 }

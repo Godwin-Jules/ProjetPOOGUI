@@ -17,12 +17,16 @@ public class Utils {
 	public JButton createBtn(String btnName) {
 		JButton btn = new JButton(btnName);
 		btn.setFont(new Font("Candara", Font.BOLD, 20));
+		btn.setFocusable(false);
+		btn.setBorder(null);
 		return btn;
 	}
 	// Creating a button with its own font size
 	public JButton createBtn(String btnName, int size) {
 		JButton btn = new JButton(btnName);
 		btn.setFont(new Font("Candara", Font.BOLD, size));
+		btn.setFocusable(false);
+		btn.setBorder(null);
 		return btn;
 	}
 	// Creating a button with its own font
@@ -30,6 +34,8 @@ public class Utils {
 		JButton btn = new JButton(btnName);
 		btn.setFont(new Font(font_style, Font.BOLD, size));
 		btn.setPreferredSize(new Dimension(80, 30));
+		btn.setFocusable(false);
+		btn.setBorder(null);
 		return btn;
 	}
 	// Creating a button with its own font and own dimension
@@ -37,6 +43,8 @@ public class Utils {
 		JButton btn = new JButton(btnName);
 		btn.setFont(new Font(font_style, Font.BOLD,size));
 		btn.setPreferredSize(new Dimension(width, heigh));
+		btn.setFocusable(false);
+		btn.setBorder(null);
 		return btn;
 	}
 	

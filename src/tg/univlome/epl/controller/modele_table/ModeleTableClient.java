@@ -125,7 +125,7 @@ public class ModeleTableClient extends AbstractTableModel {
 
 	public boolean verifClient(String nom, String prenom) {
 		for (Client client : clients) {
-			if (client.getNom().equals(nom.toUpperCase())
+			if (client.getNom().toUpperCase().equals(nom.toUpperCase())
 					&& client.getPrenom().toUpperCase().equals(prenom.toUpperCase())) {
 				return true;
 			}
