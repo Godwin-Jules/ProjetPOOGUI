@@ -100,14 +100,14 @@ public class ModeleTableClient extends AbstractTableModel {
 			client.setNom((String) value);
 			clients.set(rowIndex, client);
 			fireTableRowsUpdated(rowIndex, rowIndex);
-//			return true;
+			break;
 		case 2:
 			client.setPrenom((String) value);
 			clients.set(columnIndex, client);
 			fireTableRowsUpdated(rowIndex, rowIndex);
-//			return true;
+			break;
 		default:
-//			return false;
+			break;
 		}
 	}
 
