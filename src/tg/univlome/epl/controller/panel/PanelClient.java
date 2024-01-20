@@ -38,6 +38,7 @@ public class PanelClient extends JPanel {
 		
 		JPanel boutons = new JPanel();
 		boutons.add(new JButton(new AddClient()));
+		boutons.add(new JButton(new ModifyClient()));
 		boutons.add(new JButton(new RemoveClient()));
 		this.add(boutons, BorderLayout.SOUTH);
 	}
@@ -68,7 +69,7 @@ public class PanelClient extends JPanel {
 				String prenomL = prenoms.toLowerCase();
 				prenoms = prenomU.charAt(0) + prenomL.substring(1);
 				modele.addClient(new Client(name.toUpperCase(), prenoms));
-				JOptionPane.showConfirmDialog(tableau,
+				JOptionPane.showConfirmDialog(frame_parent,
 						"Enregistrement d'un nouveau client avec succès !",
 						"Enregistrement réussi",
 						JOptionPane.CLOSED_OPTION);
@@ -85,6 +86,7 @@ public class PanelClient extends JPanel {
 			addClient.getContentPane().add(contentPane);
 			addClient.setTitle("Enregistrement d'un nouveau client");
 			addClient.setPreferredSize(new Dimension(450, 350));
+			addClient.setResizable(false);
 			addClient.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			JPanel ajoutClient = new JPanel(new GridLayout(6, 1));
 			
@@ -151,6 +153,165 @@ public class PanelClient extends JPanel {
 		}
 	}
 	
+	private class ModifyClient extends AbstractAction{
+		
+		private ModifyClient() {
+			super("Modifier");
+		}
+
+		public boolean verifyClient(int selected,String nom, String prenom) {
+			if (nom.toUpperCase().equals(( (String) modele.getValueAt(selected, 1) ).toUpperCase()) &&
+					prenom.toUpperCase().equals(( (String) modele.getValueAt(selected, 2) ).toUpperCase())){
+				JOptionPane.showConfirmDialog(null,
+						"Aucune modification apportée",
+						"Information",
+						JOptionPane.CANCEL_OPTION);
+				return false;
+			} else {
+				return false;
+			}
+		}
+		
+		public boolean modifyClient(int selected, String nom, String prenom) {
+			
+			if (nom.toUpperCase().equals(( (String) modele.getValueAt(selected, 1) ).toUpperCase()) &&
+					prenom.toUpperCase().equals(( (String) modele.getValueAt(selected, 2) ).toUpperCase())){
+				JOptionPane.showConfirmDialog(null,
+						"Aucune modification apportée",
+						"Information",
+						JOptionPane.CANCEL_OPTION);
+				return false;
+			} else if (nom.equals("") || prenom.equals("")) {
+				JOptionPane.showConfirmDialog(null,
+						"Valeur incorrecte",
+						"Information",
+						JOptionPane.CANCEL_OPTION);
+				return false;
+			} else {
+				if (modele.verifClient(nom, prenom)) {
+					JOptionPane.showConfirmDialog(null,
+							"Ce client existe déjà dans la base",
+							"Information",
+							JOptionPane.CANCEL_OPTION);
+					return false;
+				} else {
+					int option = JOptionPane.showConfirmDialog(null,
+							"Vous voulez modifier ce client ?",
+							"Confirmation de suppression",
+							JOptionPane.YES_NO_OPTION);
+					
+					if (option == JOptionPane.YES_OPTION) {
+						String prenomU = prenom.toUpperCase();
+						String prenomL = prenom.toLowerCase();
+						prenom = prenomU.charAt(0) + prenomL.substring(1);
+						
+						modele.setValueAt(nom.toUpperCase(), selected, 1);
+						modele.setValueAt(prenom, selected, 2);
+						JOptionPane.showConfirmDialog(null,
+								"Modification effectué avec succès",
+								"Information",
+								JOptionPane.CANCEL_OPTION);
+						return true;
+					}
+				}
+			}
+			return true;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int[] selection = tableau.getSelectedRows();
+			
+			if (selection.length == 0) {
+				JOptionPane.showConfirmDialog(null,
+						"Aucun élément sélectionné",
+						"Information",
+						JOptionPane.CANCEL_OPTION);
+			} else if (selection.length == 1) {
+				
+				JFrame modifyClient = new JFrame();
+				JPanel contentPane = new JPanel();
+				modifyClient.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				modifyClient.setTitle("Modification d'un client");
+				modifyClient.setPreferredSize(new Dimension(450, 350));
+				modifyClient.setResizable(false);
+				modifyClient.getContentPane().add(contentPane);
+				
+				JPanel modifierClient = new JPanel(new GridLayout(6, 1));
+				JLabel labClientTitle = utils.createlab("NOUVEAU CLIENT  -  ENREGRISTREMENT", 20);
+				JLabel labClientName = utils.createlab("Nom du nouveau client", 16);
+				JLabel labClientPrenoms = utils.createlab("Prénom(s) du nouveau client   ", 16);
+				JLabel labClientVerifName = utils.createLab("");
+				JLabel labClientVerifPrenoms = utils.createLab("");
+				
+				
+				JTextField txtClientName = new JTextField((String) modele.getValueAt(selection[0], 1), JLabel.RIGHT);
+//				txtClientName.setPreferredSize(new Dimension(150, 20));
+				JTextField txtClientPrenoms = new JTextField((String) modele.getValueAt(selection[0], 2), JLabel.RIGHT);
+//				txtClientPrenoms.setPreferredSize(new Dimension(150, 20));
+				
+				JButton btnClientSave = utils.createBtn("Enregistrer");
+				JButton btnClientCancel = utils.createBtn("Annuler");
+				
+				JPanel panelTitle = new JPanel();
+				panelTitle.add(labClientTitle);
+				JPanel panelClientName = new JPanel(new GridLayout(1, 2));
+				panelClientName.add(labClientName);
+				panelClientName.add(txtClientName);
+				JPanel panelClientPrenom = new JPanel(new GridLayout(1, 2));
+				panelClientPrenom.add(labClientPrenoms);
+				panelClientPrenom.add(txtClientPrenoms);
+				JPanel panelClientSave = new JPanel();
+				panelClientSave.add(btnClientCancel);
+				panelClientSave.add(btnClientSave);
+				
+				modifierClient.add(panelTitle);
+				modifierClient.add(panelClientName);
+				modifierClient.add(labClientVerifName);
+				modifierClient.add(panelClientPrenom);
+				modifierClient.add(labClientVerifPrenoms);
+				modifierClient.add(panelClientSave);
+				
+				contentPane.add(modifierClient);
+				modifyClient.pack();
+				modifyClient.setLocationRelativeTo(null);
+				modifyClient.setVisible(true);
+				
+				btnClientCancel.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						modifyClient.dispose();
+						
+					}
+				});
+				
+				btnClientSave.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String nom = txtClientName.getText();
+						String prenom = txtClientPrenoms.getText();
+						
+						
+						
+						boolean result = modifyClient(selection[0], nom, prenom);
+						if (result) {
+							modifyClient.dispose();
+						}
+					}
+				});
+			} else {
+				JOptionPane.showConfirmDialog(null,
+						"Un seul élément ne peut être modifié à la fois",
+						"Information",
+						JOptionPane.CANCEL_OPTION);
+			}
+			
+		}
+		
+	}
+	
 	
 	private class RemoveClient extends AbstractAction {
 	
@@ -188,17 +349,4 @@ public class PanelClient extends JPanel {
 			}
 		}
 	}
-	
-//	private class ClientSave extends AbstractAction {
-//		
-//		private ClientSave() {
-//			super("Enregistrer");
-//			setFont(new Font("Candara", Font.BOLD, 20));
-//		}
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			
-//		}
-//	}
 }

@@ -10,14 +10,14 @@ import tg.univlome.epl.entity.Client;
 public class ModeleTableClient extends AbstractTableModel {
 
 	private static final long serialVersionUID = 7557423182749043027L;
-	
+
 	private List<Client> clients = new ArrayList<Client>();
-	
+
 	private final String[] entete = { "ID", "Nom", "Prenoms", "Nbre payement" };
 
 	public ModeleTableClient() {
 		super();
-		
+
 		clients.add(new Client("TCHIGBE", "Ezéchiel"));
 		clients.add(new Client("ZEGBLA", "Kossi Kaleb"));
 		clients.add(new Client("MILEGNE", "Dieu donné"));
@@ -58,7 +58,7 @@ public class ModeleTableClient extends AbstractTableModel {
 		clients.add(new Client("AMAÏZO", "Teddy"));
 		clients.add(new Client("HOETOWOU", "Yaovi"));
 	}
-	
+
 	@Override
 	public int getRowCount() {
 		return clients.size();
@@ -89,22 +89,44 @@ public class ModeleTableClient extends AbstractTableModel {
 			return null;
 		}
 	}
-	
+
+	@Override
+	public void setValueAt(Object value, int rowIndex, int columnIndex) {
+		Client client = new Client();
+		client = clients.get(rowIndex);
+		
+		switch (columnIndex) {
+		case 1:
+			client.setNom((String) value);
+			clients.set(rowIndex, client);
+			fireTableRowsUpdated(rowIndex, rowIndex);
+//			return true;
+		case 2:
+			client.setPrenom((String) value);
+			clients.set(columnIndex, client);
+			fireTableRowsUpdated(rowIndex, rowIndex);
+//			return true;
+		default:
+//			return false;
+		}
+	}
+
 	public void addClient(Client client) {
 		clients.add(client);
-		
+
 		fireTableRowsInserted(clients.size() - 1, clients.size() - 1);
 	}
-	
+
 	public void removeClient(int rowIndex) {
 		clients.remove(rowIndex);
-		
+
 		fireTableRowsDeleted(rowIndex, rowIndex);
 	}
-	
+
 	public boolean verifClient(String nom, String prenom) {
 		for (Client client : clients) {
-			if (client.getNom().equals(nom.toUpperCase()) && client.getPrenom().toUpperCase().equals(prenom.toUpperCase())) {
+			if (client.getNom().equals(nom.toUpperCase())
+					&& client.getPrenom().toUpperCase().equals(prenom.toUpperCase())) {
 				return true;
 			}
 		}
