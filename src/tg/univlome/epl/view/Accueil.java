@@ -56,7 +56,7 @@ public class Accueil extends JFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(1080, 700);
 		this.setLocationRelativeTo(null);
-		frame_image = new ImageIcon("restaurant_icon.jpg").getImage();
+		frame_image = new ImageIcon("img/restaurant_icon.jpg").getImage();
 		this.setIconImage(frame_image);
 		
 		contentPane = new JPanel(new BorderLayout());
