@@ -3,13 +3,11 @@ package tg.univlome.epl.controller.panel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.AbstractAction;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,9 +36,8 @@ public class PanelClient extends JPanel {
 		this.add(new JScrollPane(tableau), BorderLayout.CENTER);
 
 		
-		JButton btnAdd = utils.createBtn("Ajouter", "Candara", 20);
+		JButton btnAdd = utils.createBtn("Ajouter", 120, 40, "Candara", 20);
 		btnAdd.addActionListener(new AddClient());
-		btnAdd.setPreferredSize(new Dimension(120, 40));
 		
 		JButton btnModify = utils.createBtn("Modifier", 120, 40, "Candara", 20);
 		btnModify.addActionListener(new ModifyClient());
@@ -49,7 +46,6 @@ public class PanelClient extends JPanel {
 		btnRemove.addActionListener(new RemoveClient());
 		
 		JPanel boutons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
-//		boutons.setPreferredSize(new Dimension(0, 50));
 		boutons.add(btnAdd);
 		boutons.add(btnModify);
 		boutons.add(btnRemove);
@@ -97,19 +93,17 @@ public class PanelClient extends JPanel {
 			addClient.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			JPanel ajoutClient = new JPanel(new GridLayout(6, 1));
 
-			JLabel labClientTitle = utils.createlab("NOUVEAU CLIENT  -  ENREGRISTREMENT", 20);
-			JLabel labClientName = utils.createlab("Nom du nouveau client", 16);
-			JLabel labClientPrenoms = utils.createlab("Prénom(s) du nouveau client   ", 16);
+			JLabel labClientTitle = utils.createLab("NOUVEAU CLIENT  -  ENREGRISTREMENT", 20);
+			JLabel labClientName = utils.createLab("Nom du nouveau client", 16);
+			JLabel labClientPrenoms = utils.createLab("Prénom(s) du nouveau client   ", 16);
 			JLabel labClientVerifName = utils.createLab("");
 			JLabel labClientVerifPrenoms = utils.createLab("");
 
 			JTextField txtClientName = new JTextField("", JLabel.RIGHT);
-//			txtClientName.setPreferredSize(new Dimension(150, 20));
 			JTextField txtClientPrenoms = new JTextField("", JLabel.RIGHT);
-//			txtClientPrenoms.setPreferredSize(new Dimension(150, 20));
 
-			JButton btnClientSave = utils.createBtn("Enregistrer");
-			JButton btnClientCancel = utils.createBtn("Annuler");
+			JButton btnClientSave = utils.createBtn("Enregistrer", 100, 35, "Candara", 16);
+			JButton btnClientCancel = utils.createBtn("Annuler", 120, 35, "Candara", 18);
 
 			JPanel panelTitle = new JPanel();
 			panelTitle.add(labClientTitle);
@@ -195,7 +189,7 @@ public class PanelClient extends JPanel {
 
 					modele.setValueAt(nom.toUpperCase(), selected, 1);
 					modele.setValueAt(prenom, selected, 2);
-					JOptionPane.showMessageDialog(frame_parent, "Modification effectué avec succès", "Information",
+					JOptionPane.showMessageDialog(frame_parent, "Modification effectuée avec succès", "Information",
 							JOptionPane.CANCEL_OPTION);
 					return true;
 				} else {
@@ -222,9 +216,9 @@ public class PanelClient extends JPanel {
 				modifyClient.getContentPane().add(contentPane);
 
 				JPanel modifierClient = new JPanel(new GridLayout(6, 1));
-				JLabel labClientTitle = utils.createlab("NOUVEAU CLIENT  -  ENREGRISTREMENT", 20);
-				JLabel labClientName = utils.createlab("Nom du nouveau client", 16);
-				JLabel labClientPrenoms = utils.createlab("Prénom(s) du nouveau client   ", 16);
+				JLabel labClientTitle = utils.createLab("NOUVEAU CLIENT  -  ENREGRISTREMENT", 20);
+				JLabel labClientName = utils.createLab("Nom du nouveau client", 16);
+				JLabel labClientPrenoms = utils.createLab("Prénom(s) du nouveau client   ", 16);
 				JLabel labClientVerifName = utils.createLab("");
 				JLabel labClientVerifPrenoms = utils.createLab("");
 
@@ -233,8 +227,8 @@ public class PanelClient extends JPanel {
 				JTextField txtClientPrenoms = new JTextField((String) modele.getValueAt(selection[0], 2), JLabel.RIGHT);
 //				txtClientPrenoms.setPreferredSize(new Dimension(150, 20));
 
-				JButton btnClientSave = utils.createBtn("Enregistrer");
-				JButton btnClientCancel = utils.createBtn("Annuler");
+				JButton btnClientSave = utils.createBtn("Enregistrer", 120, 35, "Candara", 18);
+				JButton btnClientCancel = utils.createBtn("Annuler", 120, 35, "Candara", 18);
 
 				JPanel panelTitle = new JPanel();
 				panelTitle.add(labClientTitle);

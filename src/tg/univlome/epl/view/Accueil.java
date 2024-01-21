@@ -4,19 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import tg.univlome.epl.controller.panel.PanelAbout;
 import tg.univlome.epl.controller.panel.PanelBoisson;
 import tg.univlome.epl.controller.panel.PanelClient;
+import tg.univlome.epl.controller.panel.PanelEntree;
 import tg.univlome.epl.controller.panel.PanelFacture;
 import tg.univlome.epl.controller.panel.PanelPlat;
 
@@ -25,31 +26,39 @@ public class Accueil extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private static Utils utils = new Utils();
+	
 	private static JPanel contentPane;
 	private static JPanel panelTop;
 	private static JLabel labelTop;
-	private static JPanel panelLeft;
-	private static JButton btnClient;
-	private static JButton btnPlat;
-	private static JButton btnBoisson;
-	private static JButton btnFacture;
-	private static JButton btnAbout;
+	private static JPanel panelLeft;	
 	private static JPanel panelCenter = new JPanel(new BorderLayout());
 	private static JPanel panelBottom;
 	private static JLabel labBottom;
-
+	
 	private static PanelClient panelClient = new PanelClient();
+	private static PanelEntree panelEntree = new PanelEntree();
 	private static PanelPlat panelPlat = new PanelPlat();
 	private static PanelBoisson panelBoisson = new PanelBoisson();
 	private static PanelFacture panelFacture = new PanelFacture();
 	private static PanelAbout panelAbout = new PanelAbout();
+	
+	private static JButton btnClient;
+	private static JButton btnEntree;
+	private static JButton btnPlat;
+	private static JButton btnBoisson;
+	private static JButton btnFacture;
+	private static JButton btnAbout;
+
+	private static Image frame_image;
 	
 	public Accueil() {
 		super("Dashbord | Gestion des factures de Res_Torrent");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(1080, 700);
 		this.setLocationRelativeTo(null);
-
+		frame_image = new ImageIcon("restaurant_icon.jpg").getImage();
+		this.setIconImage(frame_image);
+		
 		contentPane = new JPanel(new BorderLayout());
 		this.getContentPane().add(contentPane);
 
@@ -67,15 +76,24 @@ public class Accueil extends JFrame {
 		btnClient = utils.createBtn("Clients", "Leelawadee", 20);
 		btnClient.setForeground(Color.WHITE);
 		btnClient.setBackground(Color.decode("#2C73D2"));
+		
+		btnEntree = utils.createBtn("Entrées", "Leelawadee", 20);
+		btnEntree.setBackground(Color.decode("#2C73D2"));
+		
 		btnPlat = utils.createBtn("Plats", "Leelawadee", 20);
 		btnPlat.setBackground(Color.decode("#2C73D2"));
+		
 		btnBoisson = utils.createBtn("Boissons", "Leelawadee", 20);
 		btnBoisson.setBackground(Color.decode("#2C73D2"));
+		
 		btnFacture = utils.createBtn("Factures", "Leelawadee", 20);
 		btnFacture.setBackground(Color.decode("#2C73D2"));
+		
 		btnAbout = utils.createBtn("About", "Leelawadee", 20);
 		btnAbout.setBackground(Color.decode("#2C73D2"));
+		
 		panelLeft.add(btnClient);
+		panelLeft.add(btnEntree);
 		panelLeft.add(btnPlat);
 		panelLeft.add(btnBoisson);
 		panelLeft.add(btnFacture);
@@ -102,6 +120,7 @@ public class Accueil extends JFrame {
 				
 				panelCenter.removeAll();
 				btnClient.setForeground(Color.WHITE);
+				btnEntree.setForeground(Color.BLACK);
 				btnPlat.setForeground(Color.BLACK);
 				btnBoisson.setForeground(Color.BLACK);
 				btnFacture.setForeground(Color.BLACK);
@@ -113,6 +132,24 @@ public class Accueil extends JFrame {
 			}
 		});
 
+		btnEntree.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				panelCenter.removeAll();
+				btnClient.setForeground(Color.BLACK);
+				btnEntree.setForeground(Color.WHITE);
+				btnPlat.setForeground(Color.BLACK);
+				btnBoisson.setForeground(Color.BLACK);
+				btnFacture.setForeground(Color.BLACK);
+				btnAbout.setForeground(Color.BLACK);
+				
+				panelCenter.add(panelEntree);
+				revalidate();
+				repaint();
+			}
+		});
 		// Pour le bouton plat
 		btnPlat.addActionListener(new ActionListener() {
 
@@ -121,6 +158,7 @@ public class Accueil extends JFrame {
 				
 				panelCenter.removeAll();
 				btnClient.setForeground(Color.BLACK);
+				btnEntree.setForeground(Color.BLACK);
 				btnPlat.setForeground(Color.WHITE);
 				btnBoisson.setForeground(Color.BLACK);
 				btnFacture.setForeground(Color.BLACK);
@@ -129,7 +167,7 @@ public class Accueil extends JFrame {
 				panelCenter.add(panelPlat);
 				revalidate();
 				repaint();
-				}
+			}
 		});
 
 		// Pour le bouton boisson
@@ -140,6 +178,7 @@ public class Accueil extends JFrame {
 
 				panelCenter.removeAll();
 				btnClient.setForeground(Color.BLACK);
+				btnEntree.setForeground(Color.BLACK);
 				btnPlat.setForeground(Color.BLACK);
 				btnBoisson.setForeground(Color.WHITE);
 				btnFacture.setForeground(Color.BLACK);
@@ -159,6 +198,7 @@ public class Accueil extends JFrame {
 
 				panelCenter.removeAll();
 				btnClient.setForeground(Color.BLACK);
+				btnEntree.setForeground(Color.BLACK);
 				btnPlat.setForeground(Color.BLACK);
 				btnBoisson.setForeground(Color.BLACK);
 				btnFacture.setForeground(Color.WHITE);
@@ -178,6 +218,7 @@ public class Accueil extends JFrame {
 
 				panelCenter.removeAll();
 				btnClient.setForeground(Color.BLACK);
+				btnEntree.setForeground(Color.BLACK);
 				btnPlat.setForeground(Color.BLACK);
 				btnBoisson.setForeground(Color.BLACK);
 				btnFacture.setForeground(Color.BLACK);

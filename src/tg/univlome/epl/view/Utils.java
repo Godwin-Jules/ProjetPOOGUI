@@ -56,7 +56,7 @@ public class Utils {
 		return lab;
 	}
 	// Creating a label with its own font size
-	public JLabel createlab(String labName, int size) {
+	public JLabel createLab(String labName, int size) {
 		JLabel lab = new JLabel(labName);
 		lab.setFont(new Font("Candara", Font.BOLD, size));
 		return lab;

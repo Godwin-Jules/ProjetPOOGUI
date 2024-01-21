@@ -15,6 +15,22 @@ public class Article {
 		this.id = id_increment;
 	}
 	
+	public Article(String libelle) {
+		id_increment += 1;
+		this.id = id_increment;
+		this.libelle = libelle;
+		this.prixUnitaire = 10;
+		this.remise = 0;
+	}
+	
+	public Article(String libelle, double remise) {
+		id_increment += 1;
+		this.id = id_increment;
+		this.libelle = libelle;
+		this.prixUnitaire = 10;
+		this.remise = (float) remise;
+	}
+	
 	public Article(String libelle, double prixUnitaire, double remise) {
 		id_increment += 1;
 		this.id = id_increment;
