@@ -202,7 +202,7 @@ public class PanelEntree extends JPanel {
 
 		}
 
-		public boolean modifyEntree(JFrame frame_parent, int selected, String libelle, float prixUnitaire, float remise) {
+		public boolean modifyEntree(JFrame frame_parent, int selected, String libelle, double prixUnitaire, double remise) {
 
 			if (libelle.toUpperCase().equals(((String) modele.getValueAt(selected, 1)).toUpperCase())
 					&& (float) modele.getValueAt(selected, 2) == prixUnitaire
@@ -321,8 +321,8 @@ public class PanelEntree extends JPanel {
 						String prixUnitaireS = txtEntreePrixUnitaire.getText();
 						String remiseS = txtEntreeRemise.getText();
 						try {
-							float prixUnitaire = Float.parseFloat(prixUnitaireS);
-							float remise = Float.parseFloat(remiseS);
+							double prixUnitaire = Double.parseDouble(prixUnitaireS);
+							double remise = Double.parseDouble(remiseS);
 							boolean result = modifyEntree(modifyEntree, selection[0], libelle, prixUnitaire, remise);
 							if (result) {
 								modifyEntree.dispose();
